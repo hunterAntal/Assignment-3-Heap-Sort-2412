@@ -13,6 +13,12 @@ struct Heap{
     unsigned int heapsize, length;
 };
 
+void swap(unsigned long int *a, unsigned long int *b) { // SWAPS TWO ELEMENTS OF AN ARRAY
+    unsigned long int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
 
 void MAX_HEAPIFY(struct Heap *h, unsigned int i){
     unsigned int rightChild = i*2 + 1;
@@ -30,12 +36,7 @@ void MAX_HEAPIFY(struct Heap *h, unsigned int i){
         largest = rightChild;
     }
     if(largest != i){ // IF PARENT ISN'T LARGEST THEN SWAP THEM
-        unsigned long int a,b;
-        a = h->arr[i]; // PARENT
-        b = h->arr[largest]; // LARGEST NODE
-        h->arr[i] = b;
-        h->arr[largest] = a;
-        MAX_HEAPIFY(h, largest);
+        swap(&h->arr[i], &h->arr[largest]);
     }
 }
 
@@ -46,6 +47,13 @@ void Build_Max_Heap(struct Heap *h){
     for(int i = (h->length/2); i >= 1; i--){ // ITERATE THROUGH TREE
         MAX_HEAPIFY(h, i);
     }
+}
+
+
+void Heap_Sort(struct Heap *h){
+    Build_Max_Heap(h);
+    
+    for(int i = h->length; i >= 2; i--){}
 }
 
 
