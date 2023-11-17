@@ -13,13 +13,10 @@ struct Heap{
     unsigned int heapsize, length;
 };
 
-// FIND RIGHT CHILD NODE PASS BY REFERANCE
-void RightChild(unsigned int *node){
-    *node = (*node*2) + 1; //MULTILPY BY 2 AND ADD 1 TO FIND RIGHT CHILD
-}
 
 void MAX_HEAPIFY(struct Heap *h, unsigned int i){
-    RightChild(&i); // PASS NODE TO FIND RIGHT CHILD
+    unsigned int rightChild = i*2 +1;
+    unsigned int leftChild = i*2;
 }
 
 
