@@ -10,7 +10,7 @@
 
 struct Heap{
     unsigned long *arr;
-    unsigned int heaspsize, length;
+    unsigned int heapsize, length;
 };
 
 void MAX_HEAPIFY(struct Heap *h, unsigned int i){
