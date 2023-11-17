@@ -40,6 +40,15 @@ void MAX_HEAPIFY(struct Heap *h, unsigned int i){
 }
 
 
+void Build_Max_Heap(struct Heap *h){
+    h->heapsize = h->length; // SET HEAPSIZE TO LENGTH
+    
+    for(int i = (h->length/2); i >= 1; i--){ // ITERATE THROUGH TREE
+        MAX_HEAPIFY(h, i);
+    }
+}
+
+
 void insertion_sort(unsigned long *arr, unsigned int length) {
     unsigned long temporaryVal;
     int minus = 0;
