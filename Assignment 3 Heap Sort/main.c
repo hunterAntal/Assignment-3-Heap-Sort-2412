@@ -22,6 +22,5 @@ void MAX_HEAPIFY(struct Heap *h, unsigned int i){
 
 
 int main(int argc, const char * argv[]) {
-    struct Heap test;
     return 0;
 }
