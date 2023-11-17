@@ -7,8 +7,21 @@
 
 #include <stdio.h>
 
+
+struct Heap{
+    unsigned long *arr;
+    unsigned int heaspsize, length;
+};
+
+void MAX_HEAPIFY(struct Heap *h, unsigned int i){
+    
+}
+
+
+
+
+
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
+    Heap test;
     return 0;
 }
