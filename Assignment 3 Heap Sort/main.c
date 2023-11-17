@@ -50,10 +50,14 @@ void Build_Max_Heap(struct Heap *h){
 }
 
 
-void Heap_Sort(struct Heap *h){
+void Heap_Sort(struct Heap *h){ // SORTS AN ARRAY IN PLACE
     Build_Max_Heap(h);
     
-    for(int i = h->length; i >= 2; i--){}
+    for(int i = h->length; i >= 2; i--){
+        swap(&h->arr[1], &h->arr[i]);
+        h->heapsize--;
+        MAX_HEAPIFY(h, 1);
+    }
 }
 
 
