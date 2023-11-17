@@ -66,6 +66,53 @@ void insertion_sort(unsigned long *arr, unsigned int length) {
     return;
 }
 
+void merge(unsigned long *a, unsigned long left, unsigned long mid, unsigned long right) {
+    unsigned long n1 = mid - left + 1;
+    unsigned long n2 = right - mid;
+    unsigned long leftarr[n1], rightarr[n2];
+    for (unsigned long i = 0; i < n1; i++) {
+        leftarr[i] = a[left + 1];
+    }
+    for (unsigned long i = 0; i < n2; i++) {
+        rightarr[i] = a[mid + 1 + i];
+    }
+
+    unsigned long i = 0, j = 0;
+    unsigned long k = left;
+    while (i < n1 && j < n2) {
+        if (leftarr[i] <= rightarr[j]) {
+            a[k] = leftarr[i];
+            i++;
+        }
+        else {
+            a[k] = rightarr[j];
+            j++;
+        }
+        k++;
+    }
+    while (i < n2) {
+        a[k] = leftarr[i];
+        i++;
+        k++;
+    }
+    while (j < n2) {
+        a[k] = rightarr[j];
+        j++;
+        k++;
+    }
+}
+
+void merge_sort(unsigned long *a, unsigned long left, unsigned long right) {
+
+    // implementatio of merge sort following the lectures 7-9 slideshow
+    if (left < right) {
+        unsigned long mid = left+(right-left)/2;
+        merge_sort(a, left, mid);
+        merge_sort(a, mid + 1, right);
+        merge(a, left, mid, right);
+    }
+}
+
 
 int main(int argc, const char * argv[]) {
     return 0;
