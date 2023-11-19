@@ -6,6 +6,11 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+
+#define SIZE = (int) pow(2,12)
 
 
 struct Heap{
@@ -136,5 +141,50 @@ void merge_sort(unsigned long *a, unsigned long left, unsigned long right) {
 
 
 int main(int argc, const char * argv[]) {
-    return 0;
+
+    // opens csv file called "data.csv"
+    FILE *file;
+    file = fopen("data.csv", "w");
+
+    if (file == NULL) {
+        printf("ERROR cant open file\n");
+        return;
+    }
+
+    // initialising each array
+    unsigned long *f = malloc(sizeof(unsigned long) * SIZE);
+    unsigned long *g = malloc(sizeof(unsigned long) * SIZE);
+    struct Heap *h;
+
+    // loading random values into the array
+    int temp;
+    for (int i=1; i < SIZE; i++) {
+        temp = rand()%__INT16_MAX__;
+        f[i] = (unsigned long) temp;
+        g[i] = (unsigned long) temp;
+        h->arr[i] = (unsigned long) temp;
+    }
+
+    // putting the times ran into another array (0 for heap, 1 for insertion, 2 for merge)
+    double *times = malloc(sizeof(double) * 3);
+    double t1 = clock();
+    insertion_sort(f, SIZE);
+    times[1] = difftime(t1, clock());
+
+    t1 = clock();
+    merge_sort(g, 0, SIZE - 1);
+    times[2] = difftime(t1, clock()); 
+
+    t1 = clock();
+    Heap_Sort(h);
+    times[0] = difftime(t1, clock());
+
+    // printing results into csv file "data.csv"
+    fprint(file, "%f, %f, %f",times[0], times[1], times[2]);
+
+    // close csv file "data.csv"
+    fclose(file);
+    file = 0;
+    return;
+
 }
