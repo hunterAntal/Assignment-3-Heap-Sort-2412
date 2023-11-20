@@ -67,7 +67,7 @@ void Heap_Sort(struct Heap *h){ // SORTS AN ARRAY IN PLACE
 void insertion_sort(unsigned long *arr, unsigned int length) {
     unsigned long temporaryVal;
 
-    // goes through teh array
+    // goes through the array
     for (int i = 1; i < length + 1; i++) {
         // checks through the partial sorted list to see if current value hits in anywhere
         for (int k = 0; k < i; k++) {
