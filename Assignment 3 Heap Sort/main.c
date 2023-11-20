@@ -153,7 +153,8 @@ int main(int argc, const char * argv[]) {
     // initialising each array
     unsigned long *f = malloc(sizeof(unsigned long) * SIZE);
     unsigned long *g = malloc(sizeof(unsigned long) * SIZE);
-    struct Heap *h = NULL;
+    struct Heap *h;
+    h->arr = malloc(sizeof(unsigned long) * SIZE);
 
     // loading random values into the array
     int temp;
@@ -168,15 +169,15 @@ int main(int argc, const char * argv[]) {
     double *times = malloc(sizeof(double) * 3);
     double t1 = clock();
     insertion_sort(f, SIZE);
-    times[1] = difftime(t1, clock());
+    times[1] = difftime(clock(), t1);
 
     t1 = clock();
     merge_sort(g, 0, SIZE - 1);
-    times[2] = difftime(t1, clock()); 
+    times[2] = difftime(clock(), t1);
 
     t1 = clock();
     Heap_Sort(h);
-    times[0] = difftime(t1, clock());
+    times[0] = difftime(clock(), t1);
 
     // printing results into csv file "data.csv"
     fprintf(file, "%f, %f, %f",times[0], times[1], times[2]);
