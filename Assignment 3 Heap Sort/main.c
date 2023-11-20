@@ -114,7 +114,7 @@ void merge(unsigned long *a, unsigned long left, unsigned long mid, unsigned lon
         }
         k++;
     }
-    while (i < n2) {
+    while (i < n1) { //SHOULD IT BE (i < n1) NOT (i < n2)?
         a[k] = leftarr[i];
         i++;
         k++;
@@ -155,14 +155,26 @@ int main(int argc, const char * argv[]) {
     unsigned long *f = malloc(sizeof(unsigned long) * SIZE);
     unsigned long *g = malloc(sizeof(unsigned long) * SIZE);
     struct Heap *h = malloc(sizeof(struct Heap));
+    
+    // CHECK MEMORY ALLOCATION
     if (!h) {
-        printf("\nMemory Allocation Faild\n");
+        printf("\nMemory Allocation for h Faild\n");
+        return 0;
     }
-    h->arr = malloc(sizeof(unsigned long) * SIZE);
+    if (!f) {
+        printf("\nMemory Allocation for f Faild\n");
+        return 0;
+    }
+    if (!g) {
+        printf("\nMemory Allocation for g Faild\n");
+        return 0;
+    }
+    
+    h->arr = malloc(sizeof(unsigned long) * (SIZE+1)); // (SIZE+1) BEACUSE 1-BASED INDEXING
 
     // loading random values into the array
     int temp;
-    for (int i=1; i < SIZE; i++) {
+    for (int i=1; i <= SIZE; i++) {
         temp = rand()%__INT16_MAX__;
         f[i] = (unsigned long) temp;
         g[i] = (unsigned long) temp;
@@ -189,6 +201,13 @@ int main(int argc, const char * argv[]) {
     // close csv file "data.csv"
     fclose(file);
     file = 0;
+    
+    // AVOIDING MEMORY LEAKS
+    free(f);
+    free(g);
+    free(h->arr);
+    free(h);
+    free(times);
+    
     return 0;
-
 }
