@@ -147,7 +147,7 @@ int main(int argc, const char * argv[]) {
 
     if (file == NULL) {
         printf("ERROR cant open file\n");
-        return;
+        return 0;
     }
 
     // initialising each array
@@ -179,11 +179,11 @@ int main(int argc, const char * argv[]) {
     times[0] = difftime(t1, clock());
 
     // printing results into csv file "data.csv"
-    fprint(file, "%f, %f, %f",times[0], times[1], times[2]);
+    fprintf(file, "%f, %f, %f",times[0], times[1], times[2]);
 
     // close csv file "data.csv"
     fclose(file);
     file = 0;
-    return;
+    return 0;
 
 }
