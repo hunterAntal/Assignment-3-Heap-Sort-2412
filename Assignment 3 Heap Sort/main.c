@@ -167,17 +167,17 @@ int main(int argc, const char * argv[]) {
 
     // putting the times ran into another array (0 for heap, 1 for insertion, 2 for merge)
     double *times = malloc(sizeof(double) * 3);
-    double t1 = clock();
+    double t1 =  clock();
     insertion_sort(f, SIZE);
-    times[1] = difftime(clock(), t1);
+    times[1] = (double) (clock() - t1) / CLOCKS_PER_SEC;
 
     t1 = clock();
     merge_sort(g, 0, SIZE - 1);
-    times[2] = difftime(clock(), t1);
+    times[2] = (double) (clock() - t1) / CLOCKS_PER_SEC;
 
     t1 = clock();
     Heap_Sort(h);
-    times[0] = difftime(clock(), t1);
+    times[0] = (double) (clock() - t1) / CLOCKS_PER_SEC;
 
     // printing results into csv file "data.csv"
     fprintf(file, "%f, %f, %f",times[0], times[1], times[2]);
