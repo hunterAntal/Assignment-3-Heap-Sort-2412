@@ -40,6 +40,7 @@ void MAX_HEAPIFY(struct Heap *h, unsigned int i){
     }
     if(largest != i){ // IF PARENT ISN'T LARGEST THEN SWAP THEM
         swap(&h->arr[i], &h->arr[largest]);
+        MAX_HEAPIFY(h, largest);
     }
 }
 
@@ -153,7 +154,10 @@ int main(int argc, const char * argv[]) {
     // initialising each array
     unsigned long *f = malloc(sizeof(unsigned long) * SIZE);
     unsigned long *g = malloc(sizeof(unsigned long) * SIZE);
-    struct Heap *h;
+    struct Heap *h = malloc(sizeof(struct Heap));
+    if (!h) {
+        printf("\nMemory Allocation Faild\n");
+    }
     h->arr = malloc(sizeof(unsigned long) * SIZE);
 
     // loading random values into the array
