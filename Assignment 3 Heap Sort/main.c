@@ -95,7 +95,7 @@ void merge(unsigned long *a, unsigned long left, unsigned long mid, unsigned lon
     unsigned long n2 = right - mid;
     unsigned long leftarr[n1], rightarr[n2];
     for (unsigned long i = 0; i < n1; i++) {
-        leftarr[i] = a[left + 1];
+        leftarr[i] = a[left + i]; // SHOULD THIS BE [LEFT + i] NOT [LEFT + 1]?
     }
     for (unsigned long i = 0; i < n2; i++) {
         rightarr[i] = a[mid + 1 + i];
