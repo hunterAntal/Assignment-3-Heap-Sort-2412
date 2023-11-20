@@ -183,17 +183,65 @@ int main(int argc, const char * argv[]) {
 
     // putting the times ran into another array (0 for heap, 1 for insertion, 2 for merge)
     double *times = malloc(sizeof(double) * 3);
+    if (!times) {
+        printf("\nMemory Allocation for times Faild\n");
+        return 0;
+    }
+    
+    
+    // TESTCASE ----
+    // Test case for Heap Sort
+    unsigned long testArray[] = {5, 3, 8, 4, 1, 9, 7};
+    unsigned int testSize = sizeof(testArray) / sizeof(testArray[0]);
+
+    // Allocate memory for the heap and set the test array
+    struct Heap *testHeap = malloc(sizeof(struct Heap));
+    testHeap->arr = malloc(sizeof(unsigned long) * (testSize + 1));
+    testHeap->length = testSize;
+    testHeap->heapsize = testSize;
+
+    // Copy the test array to the heap's array, starting from index 1
+    for (unsigned int i = 1; i <= testSize; i++) {
+        testHeap->arr[i] = testArray[i - 1];
+    }
+
+    // Print the array before sorting
+    printf("Before Heap Sort: ");
+    for (unsigned int i = 1; i <= testSize; i++) {
+        printf("%lu ", testHeap->arr[i]);
+    }
+    printf("\n");
+
+    // Perform Heap Sort
+    Heap_Sort(testHeap);
+
+    // Print the array after sorting
+    printf("After Heap Sort: ");
+    for (unsigned int i = 1; i <= testSize; i++) {
+        printf("%lu ", testHeap->arr[i]);
+    }
+    printf("\n");
+
+    // Free the memory
+    free(testHeap->arr);
+    free(testHeap);
+    // TESTCASE ENDS ----
+    
+    // WRITE HEADERS
+    fprintf(file, "Insertion Sort, Merge Sort, Heap Sort\n");
+    
+    // TIME MEASUREMENTS
     double t1 =  clock();
     insertion_sort(f, SIZE);
-    times[1] = (double) (clock() - t1) / CLOCKS_PER_SEC;
+    times[0] = (double) (clock() - t1) / CLOCKS_PER_SEC;
 
     t1 = clock();
     merge_sort(g, 0, SIZE - 1);
-    times[2] = (double) (clock() - t1) / CLOCKS_PER_SEC;
+    times[1] = (double) (clock() - t1) / CLOCKS_PER_SEC;
 
     t1 = clock();
     Heap_Sort(h);
-    times[0] = (double) (clock() - t1) / CLOCKS_PER_SEC;
+    times[2] = (double) (clock() - t1) / CLOCKS_PER_SEC;
 
     // printing results into csv file "data.csv"
     fprintf(file, "%f, %f, %f",times[0], times[1], times[2]);
