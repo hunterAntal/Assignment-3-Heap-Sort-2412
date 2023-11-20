@@ -10,8 +10,6 @@
 #include <time.h>
 #include <math.h>
 
-#define SIZE = (int) pow(2,12)
-
 
 struct Heap{
     unsigned long *arr;
@@ -68,7 +66,6 @@ void Heap_Sort(struct Heap *h){ // SORTS AN ARRAY IN PLACE
 
 void insertion_sort(unsigned long *arr, unsigned int length) {
     unsigned long temporaryVal;
-    int minus = 0;
 
     // goes through teh array
     for (int i = 1; i < length + 1; i++) {
@@ -141,6 +138,8 @@ void merge_sort(unsigned long *a, unsigned long left, unsigned long right) {
 
 
 int main(int argc, const char * argv[]) {
+
+    int SIZE = (int) pow(2,12);
 
     // opens csv file called "data.csv"
     FILE *file;
