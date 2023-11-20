@@ -93,7 +93,7 @@ void insertion_sort(unsigned long *arr, unsigned int length) {
 void merge(unsigned long *a, unsigned long left, unsigned long mid, unsigned long right) {
     unsigned long n1 = mid - left + 1;
     unsigned long n2 = right - mid;
-    unsigned long leftarr[n1], rightarr[n2];
+    unsigned long leftarr[n1], rightarr[n2]; // THIS LIKE THROWS AN ERROR WHEN SIZE = 2^20
     for (unsigned long i = 0; i < n1; i++) {
         leftarr[i] = a[left + i]; // SHOULD THIS BE [LEFT + i] NOT [LEFT + 1]?
     }
@@ -140,7 +140,7 @@ void merge_sort(unsigned long *a, unsigned long left, unsigned long right) {
 
 int main(int argc, const char * argv[]) {
 
-    int SIZE = (int) pow(2,12);
+    int SIZE = (int) pow(2,20);
 
     // opens csv file called "data.csv"
     FILE *file;
@@ -173,8 +173,8 @@ int main(int argc, const char * argv[]) {
     h->arr = malloc(sizeof(unsigned long) * (SIZE+1)); // (SIZE+1) BEACUSE 1-BASED INDEXING
 
     // loading random values into the array
-    int temp;
-    for (int i=1; i <= SIZE; i++) {
+    unsigned long temp;
+    for (unsigned long int i=1; i <= SIZE; i++) {
         temp = rand()%__INT16_MAX__;
         f[i] = (unsigned long) temp;
         g[i] = (unsigned long) temp;
