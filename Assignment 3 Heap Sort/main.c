@@ -153,7 +153,7 @@ int main(int argc, const char * argv[]) {
     // initialising each array
     unsigned long *f = malloc(sizeof(unsigned long) * SIZE);
     unsigned long *g = malloc(sizeof(unsigned long) * SIZE);
-    struct Heap *h;
+    struct Heap *h = NULL;
 
     // loading random values into the array
     int temp;
