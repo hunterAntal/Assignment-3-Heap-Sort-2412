@@ -48,7 +48,7 @@ void MAX_HEAPIFY(struct Heap *h, unsigned int i){
 void Build_Max_Heap(struct Heap *h){
     h->heapsize = h->length; // SET HEAPSIZE TO LENGTH
     
-    for(int i = (h->length/2); i >= 1; i--){ // ITERATE THROUGH TREE
+    for(unsigned int i = (h->length/2); i >= 1; i--){ // ITERATE THROUGH TREE
         MAX_HEAPIFY(h, i);
     }
 }
@@ -57,7 +57,7 @@ void Build_Max_Heap(struct Heap *h){
 void Heap_Sort(struct Heap *h){ // SORTS AN ARRAY IN PLACE
     Build_Max_Heap(h);
     
-    for(int i = h->length; i >= 2; i--){
+    for(unsigned int i = h->length; i >= 2; i--){
         swap(&h->arr[1], &h->arr[i]);
         h->heapsize--;
         MAX_HEAPIFY(h, 1);
@@ -191,7 +191,7 @@ int main(int argc, const char * argv[]) {
     
     // TESTCASE ----
     // Test case for Heap Sort
-    unsigned long testArray[] = {5, 3, 8, 4, 1, 9, 7};
+    unsigned long testArray[] = {5, 3, 8, 4, 1, 9, 7, 2, 27, 18, 50, 100, 0};
     unsigned int testSize = sizeof(testArray) / sizeof(testArray[0]);
 
     // Allocate memory for the heap and set the test array
