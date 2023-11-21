@@ -142,7 +142,7 @@ void merge_sort(unsigned long *a, unsigned long left, unsigned long right) {
 
 int main(int argc, const char * argv[]) {
 
-    int SIZE = (int) pow(2,19);
+    int SIZE = (int) pow(2,16);
 
     // opens csv file called "data.csv"
     FILE *file;
