@@ -193,7 +193,7 @@ int main(int argc, const char * argv[]) {
     
     // TESTCASE ----
     // Test case for merge
-    unsigned long testArray[] = {5, 3, 8, 4, 1, 9, 7, 2, 27, 18, 50, 100, 0};
+    unsigned long testArray[] = {5, 3, 8, 4, 1, 9, 7, 2, 27, 18, 50, 100};
     unsigned int testSize = sizeof(testArray) / sizeof(testArray[0]);
 
     // Allocate memory for the heap and set the test array
