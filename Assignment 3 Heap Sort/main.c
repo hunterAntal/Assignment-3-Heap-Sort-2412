@@ -93,7 +93,7 @@ void insertion_sort(unsigned long *arr, unsigned int length) {
 void merge(unsigned long *a, unsigned long left, unsigned long mid, unsigned long right) {
     unsigned long n1 = mid - left + 1;
     unsigned long n2 = right - mid;
-    unsigned long leftarr[n1], rightarr[n2]; // THIS LIKE THROWS AN ERROR WHEN SIZE = 2^20
+    unsigned long leftarr[n1], rightarr[n2]; // THIS LIKE THROWS AN ERROR WHEN SIZE >= 2^20
     for (unsigned long i = 0; i < n1; i++) {
         leftarr[i] = a[left + i]; // SHOULD THIS BE [LEFT + i] NOT [LEFT + 1]?
     }
@@ -103,7 +103,8 @@ void merge(unsigned long *a, unsigned long left, unsigned long mid, unsigned lon
 
     unsigned long i = 0, j = 0;
     unsigned long k = left;
-    while (i < n1 && j < n2) {
+    while (i < n1 && j < n2)
+    {
         if (leftarr[i] <= rightarr[j]) {
             a[k] = leftarr[i];
             i++;
@@ -126,6 +127,7 @@ void merge(unsigned long *a, unsigned long left, unsigned long mid, unsigned lon
     }
 }
 
+
 void merge_sort(unsigned long *a, unsigned long left, unsigned long right) {
 
     // implementatio of merge sort following the lectures 7-9 slideshow
@@ -140,7 +142,7 @@ void merge_sort(unsigned long *a, unsigned long left, unsigned long right) {
 
 int main(int argc, const char * argv[]) {
 
-    int SIZE = (int) pow(2,20);
+    int SIZE = (int) pow(2,22);
 
     // opens csv file called "data.csv"
     FILE *file;
@@ -227,8 +229,8 @@ int main(int argc, const char * argv[]) {
     
     // TIME MEASUREMENTS
     double t1 =  clock();
-    insertion_sort(f, SIZE);
-    times[0] = (double) (clock() - t1) / CLOCKS_PER_SEC;
+//    insertion_sort(f, SIZE);
+//    times[0] = (double) (clock() - t1) / CLOCKS_PER_SEC;
 
     t1 = clock();
     merge_sort(g, 0, SIZE - 1);
