@@ -197,16 +197,23 @@ int main(int argc, const char * argv[]) {
     
     // TIME MEASUREMENTS
     double t1 =  clock();
+    
+    
     insertion_sort(f, SIZE);
-    times[0] = (double) (clock() - t1) / CLOCKS_PER_SEC;
-
+    printf("\ninsertion %f\n", t1);
+    times[0] = (double) ((clock() - t1) / CLOCKS_PER_SEC) * 1000.0; // CONVERT TO MILLISECONDS
+    
+    t1 = 0.0;
     t1 = clock();
+    printf("\nmerge %f\n", t1);
     merge_sort(g, 0, SIZE - 1);
-    times[1] = (double) (clock() - t1) / CLOCKS_PER_SEC;
+    times[1] = (double) ((clock() - t1) / CLOCKS_PER_SEC) * 1000.0; // CONVERT TO MILLISECONDS
 
+    t1 = 0.0;
     t1 = clock();
+    printf("\nHeap %f\n", t1);
     Heap_Sort(h);
-    times[2] = (double) (clock() - t1) / CLOCKS_PER_SEC;
+    times[2] = (double) ((clock() - t1) / CLOCKS_PER_SEC) * 1000.0; // CONVERT TO MILLISECONDS
 
     // printing results into csv file "data.csv"
     fprintf(file, "%f, %f, %f",times[0], times[1], times[2]);
