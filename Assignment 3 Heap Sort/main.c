@@ -57,7 +57,7 @@ void Build_Max_Heap(struct Heap *h){
 void Heap_Sort(struct Heap *h){ // SORTS AN ARRAY IN PLACE
     Build_Max_Heap(h);
     
-    for(unsigned int i = h->length; i >= 2; i--){
+    for(unsigned long i = h->length; i >= 2; i--){
         swap(&h->arr[1], &h->arr[i]);
         h->heapsize--;
         MAX_HEAPIFY(h, 1);
@@ -142,7 +142,7 @@ void merge_sort(unsigned long *a, unsigned long left, unsigned long right) {
 
 int main(int argc, const char * argv[]) {
 
-    int SIZE = (int) pow(2,16);
+    int SIZE = (int) pow(2,18);
 
     // opens csv file called "data.csv"
     FILE *file;
@@ -173,6 +173,7 @@ int main(int argc, const char * argv[]) {
     }
     
     h->arr = malloc(sizeof(unsigned long) * (SIZE+1)); // (SIZE+1) BEACUSE 1-BASED INDEXING
+    h->length = SIZE+1; // SET LENGTH OF ARRAY
 
     // loading random values into the array
     unsigned long temp;
@@ -197,21 +198,14 @@ int main(int argc, const char * argv[]) {
     
     // TIME MEASUREMENTS
     double t1 =  clock();
-    
-    
     insertion_sort(f, SIZE);
-    printf("\ninsertion %f\n", t1);
     times[0] = (double) ((clock() - t1) / CLOCKS_PER_SEC) * 1000.0; // CONVERT TO MILLISECONDS
     
-    t1 = 0.0;
     t1 = clock();
-    printf("\nmerge %f\n", t1);
     merge_sort(g, 0, SIZE - 1);
     times[1] = (double) ((clock() - t1) / CLOCKS_PER_SEC) * 1000.0; // CONVERT TO MILLISECONDS
 
-    t1 = 0.0;
     t1 = clock();
-    printf("\nHeap %f\n", t1);
     Heap_Sort(h);
     times[2] = (double) ((clock() - t1) / CLOCKS_PER_SEC) * 1000.0; // CONVERT TO MILLISECONDS
 
