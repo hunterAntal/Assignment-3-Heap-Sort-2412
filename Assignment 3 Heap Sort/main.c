@@ -142,7 +142,7 @@ void merge_sort(unsigned long *a, unsigned long left, unsigned long right) {
 
 int main(int argc, const char * argv[]) {
 
-    int SIZE = (int) pow(2,22);
+    int SIZE = (int) pow(2,19);
 
     // opens csv file called "data.csv"
     FILE *file;
@@ -183,7 +183,7 @@ int main(int argc, const char * argv[]) {
         h->arr[i] = (unsigned long) temp;
     }
 
-    // putting the times ran into another array (0 for heap, 1 for insertion, 2 for merge)
+    // putting the times ran into another array (0 for insertion , 1 for merge, 2 for heap)
     double *times = malloc(sizeof(double) * 3);
     if (!times) {
         printf("\nMemory Allocation for times Faild\n");
@@ -191,46 +191,14 @@ int main(int argc, const char * argv[]) {
     }
     
     
-    // TESTCASE ----
-    // Test case for merge
-    unsigned long testArray[] = {5, 3, 8, 4, 1, 9, 7, 2, 27, 18, 50, 100};
-    unsigned int testSize = sizeof(testArray) / sizeof(testArray[0]);
-
-    // Allocate memory for the heap and set the test array
-    unsigned long *a = malloc(sizeof(unsigned long) * testSize);
-    // Copy the test array to the heap's array, starting from index 1
-    for (unsigned int i = 1; i <= testSize; i++) {
-        a[i] = testArray[i - 1];
-    }
-
-    // Print the array before sorting
-    printf("Before Heap Sort: ");
-    for (unsigned int i = 1; i <= testSize; i++) {
-        printf("%lu ", a[i]);
-    }
-    printf("\n");
-
-    // Perform Heap Sort
-    merge_sort(a, 0, testSize - 1);
-
-    // Print the array after sorting
-    printf("After Heap Sort: ");
-    for (unsigned int i = 1; i <= testSize; i++) {
-        printf("%lu ", a[i]);
-    }
-    printf("\n");
-
-    // Free the memory
-    free(a);
-    // TESTCASE ENDS ----
     
     // WRITE HEADERS
     fprintf(file, "Insertion Sort, Merge Sort, Heap Sort\n");
     
     // TIME MEASUREMENTS
     double t1 =  clock();
-//    insertion_sort(f, SIZE);
-//    times[0] = (double) (clock() - t1) / CLOCKS_PER_SEC;
+    insertion_sort(f, SIZE);
+    times[0] = (double) (clock() - t1) / CLOCKS_PER_SEC;
 
     t1 = clock();
     merge_sort(g, 0, SIZE - 1);
