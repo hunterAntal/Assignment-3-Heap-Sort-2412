@@ -190,41 +190,36 @@ int main(int argc, const char * argv[]) {
     
     
     // TESTCASE ----
-    // Test case for Heap Sort
+    // Test case for merge
     unsigned long testArray[] = {5, 3, 8, 4, 1, 9, 7, 2, 27, 18, 50, 100, 0};
     unsigned int testSize = sizeof(testArray) / sizeof(testArray[0]);
 
     // Allocate memory for the heap and set the test array
-    struct Heap *testHeap = malloc(sizeof(struct Heap));
-    testHeap->arr = malloc(sizeof(unsigned long) * (testSize + 1));
-    testHeap->length = testSize;
-    testHeap->heapsize = testSize;
-
+    unsigned long *a = malloc(sizeof(unsigned long) * testSize);
     // Copy the test array to the heap's array, starting from index 1
     for (unsigned int i = 1; i <= testSize; i++) {
-        testHeap->arr[i] = testArray[i - 1];
+        a[i] = testArray[i - 1];
     }
 
     // Print the array before sorting
     printf("Before Heap Sort: ");
     for (unsigned int i = 1; i <= testSize; i++) {
-        printf("%lu ", testHeap->arr[i]);
+        printf("%lu ", a[i]);
     }
     printf("\n");
 
     // Perform Heap Sort
-    Heap_Sort(testHeap);
+    merge_sort(a, 0, testSize - 1);
 
     // Print the array after sorting
     printf("After Heap Sort: ");
     for (unsigned int i = 1; i <= testSize; i++) {
-        printf("%lu ", testHeap->arr[i]);
+        printf("%lu ", a[i]);
     }
     printf("\n");
 
     // Free the memory
-    free(testHeap->arr);
-    free(testHeap);
+    free(a);
     // TESTCASE ENDS ----
     
     // WRITE HEADERS
