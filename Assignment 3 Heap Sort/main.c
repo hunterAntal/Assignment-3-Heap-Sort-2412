@@ -95,10 +95,8 @@ void merge(unsigned long *a, unsigned long left, unsigned long mid, unsigned lon
     unsigned long n2 = right - mid;
     unsigned long *leftarr = malloc(sizeof(unsigned long)*n1);
     unsigned long *rightarr = malloc(sizeof(unsigned long)*n2);
-//
-//    unsigned long leftarr[n1], rightarr[n2]; // THIS LIKE THROWS AN ERROR WHEN SIZE >= 2^20
     for (unsigned long i = 0; i < n1; i++) {
-        leftarr[i] = a[left + i]; // SHOULD THIS BE [LEFT + i] NOT [LEFT + 1]?
+        leftarr[i] = a[left + i];
     }
     for (unsigned long i = 0; i < n2; i++) {
         rightarr[i] = a[mid + 1 + i];
@@ -118,7 +116,7 @@ void merge(unsigned long *a, unsigned long left, unsigned long mid, unsigned lon
         }
         k++;
     }
-    while (i < n1) { //SHOULD IT BE (i < n1) NOT (i < n2)?
+    while (i < n1) {
         a[k] = leftarr[i];
         i++;
         k++;
